@@ -9,34 +9,54 @@
         body {
             font-family: 'Montserrat', sans-serif;
             color: #333;
-            background-color: #f4f0ff; /* Subdued purple background */
+            background-color: #f4f0ff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-
-        .header {
-            background-color: #e0d4ff; /* Lighter shade of purple for header */
-            padding: 20px;
+        .header, .footer, .nav {
+            width: 100%;
             text-align: center;
-        }
-
-        .nav {
-            text-align: center;
+            background-color: #e0d4ff;
             padding: 20px;
         }
-
         .nav a {
             margin: 0 15px;
             text-decoration: none;
-            color: #5d3dbd; /* Deeper purple for contrast */
+            color: #5d3dbd;
         }
-
-        .content {
+        .main-container {
+            display: flex;
+            width: 100%;
+            align-items: flex-start; /* Aligns items at the top */
+        }
+        .sidebar {
+            flex: 1; /* Allows sidebars to take up space on the sides */
             padding: 20px;
+            overflow-y: auto;
+            height: 100vh; /* Full height of the viewport */
+            box-sizing: border-box; /* Includes padding in the element's total width and height */
         }
-
-        .footer {
-            background-color: #e0d4ff; /* Matches header */
+        .content {
+            flex: 3; /* Content takes more space */
+            padding: 20px;
+            max-width: 1200px; /* Adjust based on preference */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: auto; /* Centers the content */
+            box-sizing: border-box; /* Includes padding in the element's total width and height */
+        }
+        /* Styles for the side content rolls */
+        .side-roll h2 {
+            font-size: 1.2rem;
+            color: #5d3dbd;
+        }
+        .article-thumbnail, .viewed-article {
+            margin: 10px 0;
             padding: 10px;
-            text-align: center;
+            background-color: #e0d4ff;
+            border-radius: 5px;
         }
     </style>
 </head>
@@ -44,18 +64,35 @@
     <div class="header">
         <h1>Welcome to Hyper Impressed</h1>
     </div>
-
     <div class="nav">
         <a href="world-philosophy/index.html">World Philosophy</a>
         <a href="spirit-philosophy/index.html">Spirit Philosophy</a>
         <a href="exercise/index.html">Exercise</a>
-        <!-- Add more links as needed -->
     </div>
-
-    <div class="content">
-        <p>Explore a range of topics from World Philosophy to Spirit Philosophy, Exercise, and more. Click on the topics above to dive deeper into each category.</p>
+    <div class="main-container">
+        <div class="sidebar">
+            <!-- Previously viewed articles -->
+            <div class="side-roll">
+                <h2>Previously Viewed</h2>
+                <div class="viewed-article">Article 1</div>
+                <div class="viewed-article">Article 2</div>
+                <!-- Additional viewed articles -->
+            </div>
+        </div>
+        <div class="content">
+            <!-- Main content -->
+            <p>Main content area. This space is used for the article or main page content.</p>
+        </div>
+        <div class="sidebar">
+            <!-- Related articles -->
+            <div class="side-roll">
+                <h2>Related Articles</h2>
+                <div class="article-thumbnail">Related Article 1</div>
+                <div class="article-thumbnail">Related Article 2</div>
+                <!-- Additional related articles -->
+            </div>
+        </div>
     </div>
-
     <div class="footer">
         <p>Contact us at email@example.com</p>
     </div>
