@@ -1,44 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sample Website with Montserrat Font</title>
-    <!-- Include Montserrat font from Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .header {
-            background-color: #f0f0f0;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .content {
-            padding: 20px;
-        }
-
-        .footer {
-            background-color: #f0f0f0;
-            padding: 10px;
-            text-align: center;
-        }
-    </style>
+    <title>YouTube Comments Embed</title>
 </head>
 <body>
-    <div class="header">
-        <h1>Welcome to My Website</h1>
-    </div>
+    <div id="youtube-comments">Loading comments...</div>
 
-    <div class="content">
-        <p>This is a sample website <a href="human-philosophy/articles/Rational und Emotional.md">World Philosophy</a> that uses the Montserrat font. Montserrat is a geometric style of typeface that's both modern and clean, making it great for web and print design. Feel free to use this template as a starting point for your website.</p>
-    </div>
+    <script>
+        // Function to fetch and display the top 3 comments
+        async function fetchYouTubeComments() {
+            const apiKey = 'AIzaSyAZJRxunHxliV4-xAfvxi6LKEIDjb5ItiM'; // Replace with your YouTube Data API key
+            const videoId = 'zSgx8U16stk'; // Replace with the YouTube video ID
+            const apiUrl = 'https://www.googleapis.com/youtube/v3/commentThreads?key=AIzaSyAZJRxunHxliV4-xAfvxi6LKEIDjb5ItiM&textFormat=plainText&part=snippet&videoId=qGyp0Y5ewBI&maxResults=3';
 
-    <div class="footer">
-        <p>Contact us at email@example.com</p>
-    </div>
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                const comments = data.items.map(item => item.snippet.topLevelComment.snippet.textDisplay);
+                
+                // Clear the comments container
+                const commentsContainer = document.getElementById('youtube-comments');
+                commentsContainer.innerHTML = '';
+
+                // Append each comment to the container
+                comments.forEach(comment => {
+                    const p = document.createElement('p');
+                    p.textContent = comment;
+                    commentsContainer.appendChild(p);
+                });
+            } catch (error) {
+                console.error('Failed to fetch YouTube comments:', error);
+                document.getElementById('youtube-comments').innerHTML = 'Failed to load comments.';
+            }
+        }
+
+        // Call the function when the script loads
+        fetchYouTubeComments();
+    </script>
 </body>
 </html>
