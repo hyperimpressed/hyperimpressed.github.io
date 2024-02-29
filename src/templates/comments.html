@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>YouTube Comments</title>
+</head>
+<body>
+    <h1>YouTube Comments</h1>
+    <ul>
+        {% for video_id, comment in comments %}
+            <li><strong>NAME:</strong> {{ video_id }}  <strong>Comment:</strong> {{ comment }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
